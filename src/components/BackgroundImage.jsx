@@ -1,8 +1,8 @@
 import { Image, StyleSheet, View } from 'react-native';
 
-export function BackgroundImage({imageUrl='', styleImage={}}) {
+export function BackgroundImage({imageUrl='', styleImage={}, styleContentImage={}}) {
 
-  const styleDinamic = {
+  const dinamicStyles = {
     image: {
       width: styleImage.width || '100%',
       ...styleImage,
@@ -10,21 +10,20 @@ export function BackgroundImage({imageUrl='', styleImage={}}) {
   }
 
   return (
-    <View style={styles.container}>
-      <Image source={imageUrl} style={[styles.image, styleDinamic.image]} resizeMode="contain" />
+    <View style={[styles.container, styleContentImage]}>
+      <Image source={imageUrl} style={[styles.image, dinamicStyles.image]} resizeMode="contain" />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: '100%',
+    // backgroundColor: 'red',
   },
   image: {
     height: 'auto',
-    aspectRatio: 1,
+    aspectRatio: 1 / 1,
+    // backgroundColor: 'blue',
   },
 });
