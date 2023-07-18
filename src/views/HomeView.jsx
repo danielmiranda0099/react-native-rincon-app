@@ -25,6 +25,7 @@ export function HomeView() {
           textHeader="Aprende"
           textContent="Ve y aprende sobre tu pelo y luago pon a prueba tus conocimientos"
           urlImage={require("../assets/girl-wich-book-1.png")}
+          path="Lecciones"
         />
 
         <LogoCard

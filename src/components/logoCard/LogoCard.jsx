@@ -2,11 +2,17 @@ import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { HEIGHT, themeStyles as theme } from "../../styles";
 
-export function LogoCard({textHeader="", textContent="", urlImage=""}) {
+export function LogoCard({textHeader="", textContent="", urlImage="", path=null}) {
   const navigation = useNavigation();
 
+  const handleTouch = () => {
+    if(path){
+      navigation.navigate(path);
+    }
+  }
+
   return (
-    <TouchableWithoutFeedback onPress={() => navigation.navigate('Lecciones')}>
+    <TouchableWithoutFeedback onPress={handleTouch}>
     <View style={styles.containerCard}>
       <View style={styles.cardContainerText}>
         <Text style={styles.cardTextHeader}>{textHeader}</Text>
