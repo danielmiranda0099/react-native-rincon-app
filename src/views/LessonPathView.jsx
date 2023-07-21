@@ -1,34 +1,56 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { lessons } from "../api";
 import { BackgroundImage, LessonCard } from "../components";
 import { themeStyles as theme } from "../styles";
 
-export function LessonPathView() {
+export function LessonPathView({navigation}) {
+
+
+  const handleClickNabar = (path) => {
+    navigation.navigate(path);
+  }
+
   return (
+    <SafeAreaView>
     <ScrollView showsVerticalScrollIndicator={false}>
-    <View style={styles.containerLessonPathView}>
-      <View>
-        <BackgroundImage
-          imageUrl={require("../assets/back-girl-beach.png")}
-          styleImage={{ width: "55%", marginTop: 0 }}
-        />
+      
+      <View style={styles.containerLessonPathView}>
+      <View style={styles.containerNavbar}>
+        <Pressable onPress={() => handleClickNabar('Lecciones')}>
+          <Text>Lecciones</Text>
+        </Pressable>
+        <Pressable onPress={() => handleClickNabar('Challenges')}>
+          <Text>Pruebas</Text>
+        </Pressable>
       </View>
+        <View>
+          <BackgroundImage
+            imageUrl={require("../assets/back-girl-beach.png")}
+            styleImage={{ width: "55%", marginTop: 0 }}
+          />
+        </View>
 
-      <View>
-        <Text style={styles.header}>BIENVENNID@ A RINCON TEST</Text>
-        <Text style={styles.text}>
-          Aqui encontraras tips, teoria e ideas sobre el cuidado de tu pelo afro
-          y lo mas genial es que podras poner a prueba tus conocimientos
-        </Text>
+        <View>
+          <Text style={styles.header}>BIENVENNID@ A RINCON TEST</Text>
+          <Text style={styles.text}>
+            Aqui encontraras tips, teoria e ideas sobre el cuidado de tu pelo
+            afro y lo mas genial es que podras poner a prueba tus conocimientos
+          </Text>
+        </View>
+
+        {lessons.map((item, index) => (
+          <LessonCard
+            title={item.titleCard}
+            textContent={item.titleCard}
+            urlImage={item.imageCard}
+            isFlip={index % 2 === 0 ? true : false}
+            id= {item.id}
+            key={index}
+          />
+        ))}
       </View>
-
-
-      <LessonCard 
-        title="TIPOS DE PELO Y DE CORTES"
-        textContent="En esta leccion aprenderas muchas cosas para tu estilo."
-        urlImage={require("../assets/girl-desk-1.png")}
-      />
-    </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -36,6 +58,15 @@ const styles = StyleSheet.create({
   containerLessonPathView: {
     ...theme.containerMain,
     paddingBottom: 0,
-    backgroundColor: '#A1AFC9'
+    backgroundColor: "#A1AFC9",
   },
-})
+  containerNavbar: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    height: 40,
+    backgroundColor: 'white'
+  },
+});
