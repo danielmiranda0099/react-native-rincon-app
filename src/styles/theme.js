@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Platform, StatusBar, StyleSheet } from "react-native";
 
 export const HEIGHT = Dimensions.get("window").height;
 
@@ -24,7 +24,9 @@ export const themeStyles = StyleSheet.create({
     flex: 1,
     minHeight: Dimensions.get("window").height,
     backgroundColor: COLORS.pink1,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    color: StatusBar.setBackgroundColor('white'),
   },
   title1: {
     fontSize: SIZES.xlarge,
