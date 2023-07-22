@@ -1,14 +1,16 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { assets } from "../assets";
 import { BackgroundImage, LogoCard } from "../components";
 import { themeStyles as theme } from "../styles";
 
 export function HomeView() {
   return (
+    <SafeAreaView>
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.containerHomeView}>
         <View>
           <BackgroundImage
-            imageUrl={require("../assets/back-girl-beach.png")}
+            imageUrl={assets["back-girl-beach"]}
             styleImage={{ width: "55%", marginTop: 0 }}
           />
         </View>
@@ -24,17 +26,18 @@ export function HomeView() {
         <LogoCard
           textHeader="Aprende"
           textContent="Ve y aprende sobre tu pelo y luago pon a prueba tus conocimientos"
-          urlImage={require("../assets/girl-wich-book-1.png")}
+          urlImage={assets["girl-wich-book-1"]}
           path="Lecciones"
         />
 
         <LogoCard
           textHeader="Pruebas"
           textContent="Ve y  pon a prueba tus conocimientos"
-          urlImage={require("../assets/girl-wich-book-1.png")}
+          urlImage={assets["girl-wich-book-1"]}
         />
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 

@@ -1,16 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { assets } from "../assets";
 import { SIZES, themeStyles as theme } from "../styles";
 
 export function LessonCard({
-  title = "",
-  textContent = "",
-  urlImage,
-  path = null,
+  titleCard = "",
   isFlip = false,
   id,
 }) {
-  const imagen = require("../assets/girl-desk-1.png");
 
   const navigation = useNavigation();
   
@@ -30,11 +27,11 @@ export function LessonCard({
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={styles.containerCard}>
         <View style={styles.containerCardBodyInfo}>
-          <Text style={styles.cardText}>{textContent}</Text>
+          <Text style={styles.cardText}>{titleCard}</Text>
         </View>
 
         <View style={styles.containerCardImage}>
-          <Image style={styles.cardImage} source={imagen} />
+          <Image style={styles.cardImage} source={assets["girl-desk-1"]} />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -85,5 +82,6 @@ const stylesInit = StyleSheet.create({
     top: "-95%",
     left: "-15%",
     // backgroundColor: 'red',
+    borderRadius: 100,
   }
 });

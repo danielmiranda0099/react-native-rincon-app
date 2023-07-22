@@ -1,6 +1,8 @@
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { lessons } from "../api";
+
+import { assets } from "../assets";
 import { BackgroundImage, LessonCard } from "../components";
+import { lessons } from "../sections/lessons";
 import { themeStyles as theme } from "../styles";
 
 export function LessonPathView({navigation}) {
@@ -25,7 +27,7 @@ export function LessonPathView({navigation}) {
       </View>
         <View>
           <BackgroundImage
-            imageUrl={require("../assets/back-girl-beach.png")}
+            imageUrl={assets["back-girl-beach"]}
             styleImage={{ width: "55%", marginTop: 0 }}
           />
         </View>
@@ -40,9 +42,7 @@ export function LessonPathView({navigation}) {
 
         {lessons.map((item, index) => (
           <LessonCard
-            title={item.titleCard}
-            textContent={item.titleCard}
-            urlImage={item.imageCard}
+            titleCard={item.title}
             isFlip={index % 2 === 0 ? true : false}
             id= {item.id}
             key={index}
