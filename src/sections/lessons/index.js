@@ -1,13 +1,35 @@
 import { lesson1Data } from "./lesson1";
+import { lesson2Data } from "./lesson2";
 
-export const lessons = [
-  {
-   ...lesson1Data
-  },
+export const lessonsPath = [
+  [
+    {
+      challenge: "1",
+    },
+    {
+      ...lesson1Data
+     },
+     {
+       ...lesson2Data
+     }
+  ],
+  [
+    {
+      challenge: "challenge1",
+    },
+    {
+      ...lesson1Data
+     },
+     {
+       ...lesson2Data
+     }
+  ],
 ]
 
 export function pagination(lessonId, pageNumber=1, itemsPerPage=1) {
-  const lesson = lessons.find((lesson) => lesson.id === lessonId);
+  const lesson = lessonsPath.map(lessonsGroup => 
+    lessonsGroup.filter(lesson => lesson.id === lessonId)
+  ).flat()[0]
 
   if (!lesson) {
     return null; // Lesson not found
