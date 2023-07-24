@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { ChallengesViews, LessonPathView, LessonView } from "../views";
+import { ChallengeView, ChallengesViews, LessonPathView, LessonView } from "../views";
 
 const Stack = createStackNavigator();
 
@@ -20,7 +20,6 @@ export function LessonsNavigation() {
         options={{
           headerTitle: "",
           headerTransparent: true,
-          
         }}
       />
       <Stack.Screen
@@ -29,6 +28,15 @@ export function LessonsNavigation() {
         options={{
           headerTitle: "Challenges",
           headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="Challenge"
+        component={ChallengeView}
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          tabBarStyle: { display: "none" },
         }}
       />
     </Stack.Navigator>

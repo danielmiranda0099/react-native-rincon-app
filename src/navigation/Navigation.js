@@ -13,7 +13,8 @@ export function Navigation() {
       <BottomTab.Screen
         name="Lecciones"
         component={LessonsNavigation}
-        options={{ headerShown: false }}
+        options={{ headerShown: false,
+        }}
       />
       <BottomTab.Screen name="Medallas" component={Componente} />
       <BottomTab.Screen name="Cuenta" component={Componente} />
