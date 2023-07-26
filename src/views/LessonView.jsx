@@ -48,7 +48,7 @@ export function LessonView({ navigation, route: { params } }) {
           </View>
           <View style={styles.containerBanner}>
             <Image
-              source={assets["corte_pelo"]}
+              source={assets[dataSection?.section.banner]}
               style={styles.banner}
               resizeMode="contain"
             />
