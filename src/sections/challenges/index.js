@@ -21,16 +21,19 @@ export function getChallenge(id, challengeNumber=1, challengePerPage=1){
   const totalQuestions = challenge.questions.length
   const totalPagination = Math.ceil(totalQuestions / challengePerPage);
   const isNext = challengeNumber < totalPagination;
-  console.log(challengeNumber, totalPagination)
+  const progress = `${Math.ceil((start / totalQuestions) * 100)}%`;
+  console.log(`Progreso = ${progress}%`)
+  // console.log(challengeNumber, totalPagination)
 
   const nextUrl = isNext ? challengeNumber + 1 : totalPagination;
 
-  console.log("get Challenge", JSON.stringify(question, null, 2));
+  // console.log("get Challenge", JSON.stringify(question, null, 2));
   return {
     challengeNumber,
     totalQuestions,
-    question: question[0],
+    questions: question[0],
     isNext,
     nextUrl,
+    progress
   };
 }

@@ -27,11 +27,11 @@ export function ChallengeView({ route: { params } }) {
   const checkAnswer = (response) => {
     if(isNextQuestion) return
     
-    console.log(response, challenge.question.correctAnswer);
-    console.log("La Respuesta Es:", response.toLowerCase() == challenge.question.correctAnswer.toLowerCase())
-    const checkAnswer = response.toLowerCase() == challenge.question.correctAnswer.toLowerCase()
+    console.log(response, challenge?.questions.correctAnswer);
+    console.log("La Respuesta Es:", response.toLowerCase() == challenge.questions.correctAnswer.toLowerCase())
+    const checkAnswer = response.toLowerCase() == challenge.questions.correctAnswer.toLowerCase()
     setIsTrue(checkAnswer);
-    setIsNextQuestion(true)
+    setIsNextQuestion(true);
   };
 
   const handleNext = () => {
@@ -47,18 +47,34 @@ export function ChallengeView({ route: { params } }) {
     setChallenge(challenge);
   }, [params.id]);
 
+  const styles  = {
+    ...stylesInit,
+    progressBar: {
+      ...stylesInit.progressBar,
+      width: challenge ?  challenge.progress : '0%',
+    }
+  }
+
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.containerChallenge}>
+          <View style={styles.containerProgress}>
+            <View style={styles.progressBar}></View>
+
+            <View style={styles.containerPercentage}>
+            <Text style={styles.percentage}>{challenge?.progress}</Text>
+            </View>
+          </View>
+
           <View style={styles.containerQuestion}>
             <Text style={styles.questionText}>
-              {challenge?.question.question}
+              {challenge?.questions.question}
             </Text>
           </View>
 
           <View style={styles.containerResponses}>
-            {challenge?.question?.responses?.map((response, index) => (
+            {challenge?.questions?.responses?.map((response, index) => (
               <ButtonAnswer
                 letter={LETTER[index]}
                 response={response}
@@ -79,12 +95,35 @@ export function ChallengeView({ route: { params } }) {
   );
 }
 
-const styles = StyleSheet.create({
+const stylesInit = StyleSheet.create({
   containerChallenge: {
     ...theme.containerMain,
     paddingTop: 110,
     paddingHorizontal: 30,
     alignItems: "center",
+  },
+  containerProgress: {
+    width: '100%',
+    height: 30,
+    top: 0,
+    marginTop: 20,
+    position: 'absolute',
+    backgroundColor: 'pink',
+  },
+  progressBar: {
+    width: '0%',
+    height: 30,
+    backgroundColor: '#A796EB',
+    
+  },
+  containerPercentage: {
+    width: '100%',
+    height: 30,
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
   },
   containerQuestion: {
     backgroundColor: "pink",
