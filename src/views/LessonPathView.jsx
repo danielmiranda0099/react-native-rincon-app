@@ -11,7 +11,7 @@ import uuid from "react-native-uuid";
 
 import React from "react";
 import { assets } from "../assets";
-import { BackgroundImage, LessonCard } from "../components";
+import { BackgroundImage, ButtonToChallenge, LessonCard } from "../components";
 import { lessonsPath } from "../sections/lessons";
 import { themeStyles as theme } from "../styles";
 
@@ -61,16 +61,9 @@ export function LessonPathView({ navigation }) {
                     />
                   )
               )}
-              <Pressable
-                onPress={() =>
-                  navigation.navigate("Challenge", {
-                    id: lessonGroup[0].challenge,
-                  })
-                }
-                key={uuid.v4()}
-              >
-                <Text>Pon a pruebas esta leccion</Text>
-              </Pressable>
+              <ButtonToChallenge  
+                lessonGroup={lessonGroup}
+              />
             </React.Fragment>
           ))}
         </View>
@@ -83,7 +76,7 @@ const styles = StyleSheet.create({
   containerLessonPathView: {
     ...theme.containerMain,
     paddingBottom: 0,
-    backgroundColor: "#A1AFC9",
+    backgroundColor: "#f9d2e4",
   },
   containerNavbar: {
     display: "flex",
