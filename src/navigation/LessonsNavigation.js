@@ -36,7 +36,6 @@ export function LessonsNavigation() {
         options={{
           headerTitle: "",
           headerTransparent: true,
-          tabBarStyle: { display: "none" },
         }}
       />
     </Stack.Navigator>
